@@ -28,19 +28,18 @@
     "build"
   ],
   "dependencies": {
-    "atom-package-deps": "^4.6.0"
+    "atom-package-deps": "^4.6.1"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.2.1",
     "coffeelint-stylish": "^0.1.2",
+    "eslint": "^4.16.0",
     "eslint-config-atom-build": "^4.0.0",
     "gulp": "^4.0.0",
     "gulp-coffeelint": "^0.6.0",
     "gulp-debug": "^3.1.0",
-    "gulp-jshint": "^2.0.4",
-    "gulp-jsonlint": "^1.2.0",
-    "gulp-lesshint": "^4.0.0",
-    "jshint": "^2.9.5"
+    "gulp-eslint": "^4.0.1",
+    "gulp-jsonlint": "^1.2.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
