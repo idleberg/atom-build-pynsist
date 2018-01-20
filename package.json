@@ -42,6 +42,14 @@
     "gulp-lesshint": "^4.0.0",
     "jshint": "^2.9.5"
   },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "atom-build",
+    "rules": {
+      "consistent-return": 0,
+      "no-console": 0
+    }
+  },
   "scripts": {
     "test": "gulp lint"
   }
