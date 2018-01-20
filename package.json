@@ -39,7 +39,8 @@
     "gulp-coffeelint": "^0.6.0",
     "gulp-debug": "^3.1.0",
     "gulp-eslint": "^4.0.1",
-    "gulp-jsonlint": "^1.2.0"
+    "gulp-jsonlint": "^1.2.0",
+    "gulp-lesshint": "^4.1.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
