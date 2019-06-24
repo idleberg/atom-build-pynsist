@@ -1,11 +1,10 @@
 # build-pynsist
 
-[![apm](https://img.shields.io/apm/l/build-pynsist.svg?style=flat-square)](https://atom.io/packages/build-pynsist)
-[![apm](https://img.shields.io/apm/v/build-pynsist.svg?style=flat-square)](https://atom.io/packages/build-pynsist)
-[![apm](https://img.shields.io/apm/dm/build-pynsist.svg?style=flat-square)](https://atom.io/packages/build-pynsist)
-[![Travis](https://img.shields.io/travis/idleberg/atom-build-pynsist.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-build-pynsist)
-[![David](https://img.shields.io/david/idleberg/atom-build-pynsist.svg?style=flat-square)](https://david-dm.org/idleberg/atom-build-pynsist)
-[![David](https://img.shields.io/david/dev/idleberg/atom-build-pynsist.svg?style=flat-square)](https://david-dm.org/idleberg/atom-build-pynsist?type=dev)
+[![apm](https://flat.badgen.net/apm/license/build-pynsist)](https://atom.io/packages/build-pynsist)
+[![apm](https://flat.badgen.net/apm/v/build-pynsist)](https://atom.io/packages/build-pynsist)
+[![apm](https://flat.badgen.net/apm/dl/build-pynsist)](https://atom.io/packages/build-pynsist)
+[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-build-pynsist)](https://circleci.com/gh/idleberg/atom-build-pynsist)
+[![David](https://flat.badgen.net/david/dep/idleberg/atom-build-pynsist)](https://david-dm.org/idleberg/atom-build-pynsist)
 [![Gitter](https://img.shields.io/badge/chat-Gitter-ed1965.svg?style=flat-square)](https://gitter.im/NSIS-Dev/Atom)
 
 [Atom Build](https://atombuild.github.io/) for Pynsist, builds Windows installers for Python applications.
