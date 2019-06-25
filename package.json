@@ -22,6 +22,9 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "activationHooks": [
+    "source.cfg:root-scope-used"
+  ],
   "providedServices": {
     "builder": {
       "description": "Compiles NSIS installers",
