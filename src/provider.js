@@ -42,7 +42,7 @@ export const config = {
 };
 
 export function which() {
-  return (platform() === 'win32') ? true : false;
+  return (platform() === 'win32') ? 'where' : 'which';
 }
 
 function spawnPromise(cmd, args) {
@@ -111,8 +111,8 @@ export function provideBuilder() {
 
       // Second, check for pynsist
       const pathToPynsist = atom.config.get(`${meta.name}.pathToPynsist`);
-      const cmd = await spawnPromise(which(), [ pathToPynsist ]);
-      const hasPynsist = (!cmd.stdout.toString()) ? false : true;
+      const whichCmd = await spawnPromise(which(), [ pathToPynsist ]);
+      const hasPynsist = (!whichCmd.stdout.toString()) ? false : true;
 
       if (hasPynsist === true && hasConfig === true) {
         return true;
