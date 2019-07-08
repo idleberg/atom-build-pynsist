@@ -1,6 +1,6 @@
 {
   "name": "build-pynsist",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Atom Build provider for Pynsist, builds Windows installers for Python applications",
   "repository": "https://github.com/idleberg/atom-build-pynsist",
   "license": "MIT OR GPL-2.0",
