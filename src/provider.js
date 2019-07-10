@@ -1,88 +1,14 @@
 'use babel';
 
-import { EventEmitter } from 'events';
-import { existsSync } from 'fs';
-import { install } from 'atom-package-deps';
-import { platform } from 'os';
-import { join } from 'path';
-import { spawn } from 'child_process';
-
-// Package settings
 import meta from '../package.json';
+import { EventEmitter } from 'events';
+import { configSchema, getConfig } from './config';
+import { existsSync } from 'fs';
+import { join } from 'path';
+import { satisfyDependencies, which } from './util';
+import { spawnSync } from 'child_process';
 
-export const config = {
-  pathToPynsist: {
-    title: 'Path to Pynsist',
-    description: 'Specify the full path to `pynsist`',
-    type: 'string',
-    default: 'pynsist',
-    order: 0
-  },
-  mutePathWarning: {
-    title: 'Mute Warning',
-    description: 'When enabled, warnings about missing path to `pynsist` will be muted',
-    type: 'boolean',
-    default: false,
-    order: 1
-  },
-  manageDependencies: {
-    title: 'Manage Dependencies',
-    description: 'When enabled, third-party dependencies will be installed automatically',
-    type: 'boolean',
-    default: true,
-    order: 3
-  },
-  alwaysEligible: {
-    title: 'Always Eligible',
-    description: 'The build provider will be available in your project, even when not eligible',
-    type: 'boolean',
-    default: false,
-    order: 4
-  }
-};
-
-export function which() {
-  return (platform() === 'win32') ? 'where' : 'which';
-}
-
-function spawnPromise(cmd, args) {
-  return new Promise(function (resolve, reject) {
-    const child = spawn(cmd, args);
-    let stdOut;
-    let stdErr;
-
-    child.stdout.on('data', function (line) {
-      stdOut += line.toString().trim();
-    });
-
-    child.stderr.on('data', function (line) {
-      stdErr += line.toString().trim();
-    });
-
-    child.on('close', function (code) {
-      if (code === 0) {
-        resolve(stdOut);
-      }
-
-      reject(stdErr);
-    });
-  });
-}
-
-export function satisfyDependencies() {
-  install(meta.name);
-
-  const packageDeps = meta['package-deps'];
-
-  packageDeps.forEach( packageDep => {
-    if (packageDep) {
-      if (atom.packages.isPackageDisabled(packageDep)) {
-        if (atom.inDevMode()) console.log(`Enabling package '${packageDep}\'`);
-        atom.packages.enablePackage(packageDep);
-      }
-    }
-  });
-}
+export { configSchema as config };
 
 export function provideBuilder() {
   return class pynsistProvider extends EventEmitter {
@@ -97,7 +23,7 @@ export function provideBuilder() {
     }
 
     async isEligible() {
-      if (atom.config.get(`${meta.name}.alwaysEligible`) === true) {
+      if (getConfig('alwaysEligible') === true) {
         return true;
       }
 
@@ -110,8 +36,8 @@ export function provideBuilder() {
       const hasConfig = (projectConfig || activeConfig) ? true : false;
 
       // Second, check for pynsist
-      const pathToPynsist = atom.config.get(`${meta.name}.pathToPynsist`);
-      const whichCmd = await spawnPromise(which(), [ pathToPynsist ]);
+      const pathToPynsist = getConfig('pathToPynsist');
+      const whichCmd = spawnSync(which(), [ pathToPynsist ]);
       const hasPynsist = (!whichCmd.stdout.toString()) ? false : true;
 
       if (hasPynsist === true && hasConfig === true) {
@@ -119,7 +45,7 @@ export function provideBuilder() {
       }
 
       // Warn only
-      if (hasPynsist === false && atom.config.get(`${meta.name}.mutePathWarning`) === false) {
+      if (hasPynsist === false && getConfig('mutePathWarning') === false) {
         const notification = atom.notifications.addWarning(`**${meta.name}**: No valid \`pynsist\` was specified in your settings`, {
           dismissable: true,
           buttons: [
@@ -146,7 +72,7 @@ export function provideBuilder() {
     }
 
     settings() {
-      const pathToPynsist = atom.config.get(`${meta.name}.pathToPynsist`);
+      const pathToPynsist = getConfig('pathToPynsist');
 
       return [
         {
@@ -171,8 +97,8 @@ export function provideBuilder() {
 }
 
 // This package depends on build, make sure it's installed
-export function activate() {
-  if (atom.config.get(`${meta.name}.manageDependencies`) === true) {
+export async function activate() {
+  if (getConfig('manageDependencies') === true) {
     satisfyDependencies();
   }
 }
