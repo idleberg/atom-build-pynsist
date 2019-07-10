@@ -5,7 +5,7 @@
   "repository": "https://github.com/idleberg/atom-build-pynsist",
   "license": "MIT OR GPL-2.0",
   "scripts": {
-    "build": "webpack --mode none",
+    "build": "webpack --mode production",
     "dev": "webpack --mode none --watch",
     "lint": "eslint ./src",
     "test": "npm run lint"
@@ -22,9 +22,6 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "activationHooks": [
-    "source.cfg:root-scope-used"
-  ],
   "providedServices": {
     "builder": {
       "description": "Compiles NSIS installers",
