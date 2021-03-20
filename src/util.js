@@ -10,7 +10,7 @@ export function satisfyDependencies() {
   packageDeps.forEach( packageDep => {
     if (packageDep) {
       if (atom.packages.isPackageDisabled(packageDep)) {
-        if (atom.inDevMode()) console.log(`Enabling package '${packageDep}\'`);
+        if (atom.inDevMode()) console.log(`Enabling package '${packageDep}'`);
         atom.packages.enablePackage(packageDep);
       }
     }

@@ -1,5 +1,3 @@
-'use babel';
-
 import meta from '../package.json';
 import { EventEmitter } from 'events';
 import { configSchema, getConfig } from './config';
@@ -99,6 +97,6 @@ export function provideBuilder() {
 // This package depends on build, make sure it's installed
 export async function activate() {
   if (getConfig('manageDependencies') === true) {
-    satisfyDependencies();
+    satisfyDependencies(meta.name);
   }
 }
