@@ -1,11 +1,11 @@
-import meta from '../package.json';
 import { configSchema, getConfig } from './config';
 import { EventEmitter } from 'events';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { satisfyDependencies } from 'atom-satisfy-dependencies';
-import { spawnSync } from 'child_process';
-import { which } from './util';
+import Logger from './log';
+import meta from '../package.json';
+import which from 'which';
 
 export { configSchema as config };
 
@@ -23,6 +23,7 @@ export function provideBuilder() {
 
     async isEligible() {
       if (getConfig('alwaysEligible') === true) {
+        Logger.log('Always eligible');
         return true;
       }
 
@@ -36,8 +37,7 @@ export function provideBuilder() {
 
       // Second, check for pynsist
       const pathToPynsist = getConfig('pathToPynsist');
-      const whichCmd = spawnSync(which(), [ pathToPynsist ]);
-      const hasPynsist = (!whichCmd.stdout.toString()) ? false : true;
+      const hasPynsist = Boolean(which.sync(pathToPynsist, { nothrow: true}));
 
       if (hasPynsist === true && hasConfig === true) {
         return true;
