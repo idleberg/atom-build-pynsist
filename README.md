@@ -4,8 +4,7 @@
 [![apm](https://flat.badgen.net/apm/v/build-pynsist)](https://atom.io/packages/build-pynsist)
 [![apm](https://flat.badgen.net/apm/dl/build-pynsist)](https://atom.io/packages/build-pynsist)
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-build-pynsist)](https://circleci.com/gh/idleberg/atom-build-pynsist)
-[![David](https://flat.badgen.net/david/dep/idleberg/atom-build-pynsist)](https://david-dm.org/idleberg/atom-build-pynsist)
-[![Gitter](https://flat.badgen.net/badge/chat/on%20gitter/ff69b4)](https://gitter.im/NSIS-Dev/Atom)
+[![David](https://flat.badgen.net/david/dev/idleberg/atom-build-pynsist)](https://david-dm.org/idleberg/atom-build-pynsist?type=dev)
 
 [Atom Build](https://atombuild.github.io/) for Pynsist, builds Windows installers for Python applications.
 
